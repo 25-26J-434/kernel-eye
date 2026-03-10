@@ -1,0 +1,67 @@
+---
+const components = [
+  {
+    title: "eBPF Telemetry Layer",
+    description: "Collects kernel-level runtime and network metrics with low overhead to improve observability without sidecar proxies.",
+    tags: ["eBPF", "Kernel Telemetry", "Observability"]
+  },
+  {
+    title: "Intent-Aware Traffic Routing",
+    description: "Redirects service traffic using live telemetry and runtime health signals to maintain better performance and availability.",
+    tags: ["Routing", "Intent", "Health Signals"]
+  },
+  {
+    title: "Runtime-Aware Scaling & Scheduling",
+    description: "Supports smarter scaling and workload placement decisions using real performance conditions beyond CPU and memory alone.",
+    tags: ["Scaling", "Scheduling", "Runtime Context"]
+  },
+  {
+    title: "Distributed Coordination Layer",
+    description: "Shares node-level telemetry across the cluster to support broader orchestration awareness and coordinated decision making.",
+    tags: ["Coordination", "Cluster-wide", "Telemetry Sharing"]
+  }
+];
+---
+
+<section id="contributions" class="py-24 relative">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12 reveal">
+      <div>
+        <p class="text-sm uppercase tracking-[0.2em] text-sky-300">Core Research Components</p>
+        <h2 class="text-3xl md:text-4xl font-bold font-heading text-white mt-3">
+          Core Research Components
+        </h2>
+        <p class="text-slate-400 mt-4 max-w-2xl">
+          Four concise system elements designed to enable telemetry-driven orchestration in Kubernetes environments.
+        </p>
+      </div>
+      <div class="glass-soft rounded-2xl px-5 py-3 border border-white/10 text-sm text-slate-300">
+        Focus: <span class="text-sky-300 font-medium">Sidecar-less orchestration</span>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+      {components.map((component) => (
+        <div class="glass-soft card-hover rounded-3xl p-8 border border-white/10 relative overflow-hidden reveal">
+          <div class="absolute -top-10 -right-10 w-32 h-32 bg-sky-500/10 rounded-full blur-[60px]"></div>
+          <div class="flex items-center gap-3 mb-4">
+            <span class="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-sky-200">
+              <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" d="M4 7h16M4 12h16M4 17h16" />
+              </svg>
+            </span>
+            <h3 class="text-xl font-semibold text-white">{component.title}</h3>
+          </div>
+          <p class="text-slate-400 leading-relaxed mb-5">{component.description}</p>
+          <div class="flex flex-wrap gap-2">
+            {component.tags.map((tag) => (
+              <span class="text-xs px-2.5 py-1 rounded-full bg-white/5 border border-white/10 text-slate-200">
+                {tag}
+              </span>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
