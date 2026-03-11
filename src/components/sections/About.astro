@@ -91,16 +91,19 @@ const scopeTabs = [
 </section>
 
 <script define:vars={{ scopeTabs }}>
-  const tabsRoot = document.querySelector("[data-scope-tabs]");
-  const titleEl = document.querySelector("[data-scope-title]");
-  const subtitleEl = document.querySelector("[data-scope-subtitle]");
-  const bodyEl = document.querySelector("[data-scope-body]");
+  const tabsRoot = document.querySelector<HTMLElement>("[data-scope-tabs]");
+  const titleEl = document.querySelector<HTMLElement>("[data-scope-title]");
+  const subtitleEl = document.querySelector<HTMLElement>("[data-scope-subtitle]");
+  const bodyEl = document.querySelector<HTMLElement>("[data-scope-body]");
 
   if (tabsRoot && titleEl && subtitleEl && bodyEl) {
-    const tabs = Array.from(tabsRoot.querySelectorAll("button[data-tab]"));
+    const tabs = Array.from(
+      tabsRoot.querySelectorAll<HTMLButtonElement>("button[data-tab]"),
+    );
     const data = scopeTabs;
 
-    const setActive = (id) => {
+    const setActive = (id?: string) => {
+      if (!id) return;
       const selected = data.find((item) => item.id === id);
       if (!selected) return;
       titleEl.textContent = selected.title;

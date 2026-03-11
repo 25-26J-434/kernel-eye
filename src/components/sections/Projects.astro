@@ -3,27 +3,34 @@ const documents = [
   {
     title: "Project Proposal",
     description: "Proposal document covering project background and scope.",
-    status: "Coming Soon",
-    action: "Coming Soon"
+    status: "Available",
+    action: "View Resource ",
+    url: "https://drive.google.com/file/d/1W4bP6fZUgI4g0wzNWet1l_kBDSgRy1Nk/view?usp=sharing?download=true",
   },
   {
     title: "Research Paper",
-    description: "Research writing based on the KernelEye architecture and findings.",
+    description:
+      "Research writing based on the KernelEye architecture and findings.",
     status: "Coming Soon",
-    action: "Coming Soon"
+    action: "Coming Soon",
+    url: "",
   },
   {
     title: "Final Report",
-    description: "Comprehensive final report of the research and implementation.",
+    description:
+      "Comprehensive final report of the research and implementation.",
     status: "Coming Soon",
-    action: "Coming Soon"
+    action: "Coming Soon",
+    url: "",
   },
   {
     title: "Poster",
-    description: "Summary poster highlighting the research problem and solution.",
+    description:
+      "Summary poster highlighting the research problem and solution.",
     status: "Coming Soon",
-    action: "Coming Soon"
-  }
+    action: "Coming Soon",
+    url: "",
+  },
 ];
 
 const presentations = [
@@ -31,15 +38,17 @@ const presentations = [
     title: "PP2 Presentation",
     description: "Progress Presentation 2 research presentation.",
     status: "Available",
-    action: "View Resource"
-  }
+    action: "View Resource",
+    url: "",
+  },
 ];
-
 ---
 
 <section id="downloads" class="py-24 relative">
   <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10 reveal">
+    <div
+      class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10 reveal"
+    >
       <div>
         <p class="text-sm uppercase tracking-[0.2em] text-sky-300">Downloads</p>
         <h2 class="text-3xl md:text-4xl font-bold font-heading text-white mt-3">
@@ -49,101 +58,201 @@ const presentations = [
           Access the latest research resources and project deliverables.
         </p>
       </div>
-      <div class="glass-soft rounded-2xl px-5 py-3 border border-white/10 text-sm text-slate-300">
+      <div
+        class="glass-soft rounded-2xl px-5 py-3 border border-white/10 text-sm text-slate-300"
+      >
         Project ID: <span class="text-slate-100 font-medium">25-26J-434</span>
       </div>
     </div>
 
-    <div class="flex flex-wrap items-center justify-center gap-2 mb-8 reveal" data-download-tabs>
-      {[
-        { id: "documents", label: "Documents" },
-        { id: "presentations", label: "Presentations" }
-      ].map((tab, index) => (
-        <button
-          class={`focus-ring rounded-full px-5 py-2 text-sm font-medium border transition ${
-            index === 0
-              ? "bg-white/10 text-white border-white/20"
-              : "bg-white/5 text-slate-300 border-white/10 hover:border-white/20 hover:bg-white/10"
-          }`}
-          data-download-tab={tab.id}
-          aria-selected={index === 0 ? "true" : "false"}
-          type="button"
-        >
-          {tab.label}
-        </button>
-      ))}
+    <div
+      class="flex flex-wrap items-center justify-center gap-2 mb-8 reveal"
+      data-download-tabs
+    >
+      {
+        [
+          { id: "documents", label: "Documents" },
+          { id: "presentations", label: "Presentations" },
+        ].map((tab, index) => (
+          <button
+            class={`focus-ring rounded-full px-5 py-2 text-sm font-medium border transition ${
+              index === 0
+                ? "bg-white/10 text-white border-white/20"
+                : "bg-white/5 text-slate-300 border-white/10 hover:border-white/20 hover:bg-white/10"
+            }`}
+            data-download-tab={tab.id}
+            aria-selected={index === 0 ? "true" : "false"}
+            type="button"
+          >
+            {tab.label}
+          </button>
+        ))
+      }
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 min-h-[220px]" data-download-panel="documents">
-      {documents.map((item) => {
-        const isAvailable = item.status === "Available";
-        return (
-          <div class="glass-soft card-hover rounded-2xl p-6 border border-white/10 flex flex-col justify-between reveal">
-            <div>
-              <div class="flex items-center justify-between mb-4">
-                <span class="text-xs px-2.5 py-1 rounded-full bg-white/10 text-slate-200 border border-white/10">{item.status}</span>
-                <span class="text-xs text-slate-500">Resource</span>
+    <div
+      class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 min-h-[220px]"
+      data-download-panel="documents"
+    >
+      {
+        documents.map((item) => {
+          const isAvailable = item.status === "Available";
+          return (
+            <div class="glass-soft card-hover rounded-2xl p-6 border border-white/10 flex flex-col justify-between reveal">
+              <div>
+                <div class="flex items-center justify-between mb-4">
+                  <span class="text-xs px-2.5 py-1 rounded-full bg-white/10 text-slate-200 border border-white/10">
+                    {item.status}
+                  </span>
+                  <span class="text-xs text-slate-500">Resource</span>
+                </div>
+                <h3 class="text-lg font-semibold text-white mb-2">
+                  {item.title}
+                </h3>
+                <p class="text-sm text-slate-400 leading-relaxed">
+                  {item.description}
+                </p>
               </div>
-              <h3 class="text-lg font-semibold text-white mb-2">{item.title}</h3>
-              <p class="text-sm text-slate-400 leading-relaxed">{item.description}</p>
+              {isAvailable && item.url ? (
+                <a
+                  href={item.url}
+                  target="_blank"
+                  rel="noreferrer"
+                  class="focus-ring mt-6 inline-flex items-center justify-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all bg-sky-600/90 hover:bg-sky-600 text-white"
+                >
+                  {item.action}
+                  <svg
+                    class="w-4 h-4"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    aria-hidden="true"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M12 5v14m0 0l5-5m-5 5l-5-5"
+                    />
+                  </svg>
+                </a>
+              ) : (
+                <button
+                  class="focus-ring mt-6 inline-flex items-center justify-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all bg-white/5 text-slate-400 border border-white/10 cursor-not-allowed"
+                  aria-disabled="true"
+                  type="button"
+                >
+                  {item.action}
+                  <svg
+                    class="w-4 h-4"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    aria-hidden="true"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M12 5v14m0 0l5-5m-5 5l-5-5"
+                    />
+                  </svg>
+                </button>
+              )}
             </div>
-            <button
-              class={`focus-ring mt-6 inline-flex items-center justify-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all ${
-                isAvailable
-                  ? "bg-sky-600/90 hover:bg-sky-600 text-white"
-                  : "bg-white/5 text-slate-400 border border-white/10 cursor-not-allowed"
-              }`}
-              aria-disabled={!isAvailable}
-            >
-              {item.action}
-              <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 5v14m0 0l5-5m-5 5l-5-5" />
-              </svg>
-            </button>
-          </div>
-        );
-      })}
+          );
+        })
+      }
     </div>
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 min-h-[220px] hidden" data-download-panel="presentations">
-      {presentations.map((item) => {
-        const isAvailable = item.status === "Available";
-        return (
-          <div class="glass-soft card-hover rounded-2xl p-6 border border-white/10 flex flex-col justify-between reveal">
-            <div>
-              <div class="flex items-center justify-between mb-4">
-                <span class="text-xs px-2.5 py-1 rounded-full bg-white/10 text-slate-200 border border-white/10">{item.status}</span>
-                <span class="text-xs text-slate-500">Resource</span>
+    <div
+      class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 min-h-[220px] hidden"
+      data-download-panel="presentations"
+    >
+      {
+        presentations.map((item) => {
+          const isAvailable = item.status === "Available";
+          return (
+            <div class="glass-soft card-hover rounded-2xl p-6 border border-white/10 flex flex-col justify-between reveal">
+              <div>
+                <div class="flex items-center justify-between mb-4">
+                  <span class="text-xs px-2.5 py-1 rounded-full bg-white/10 text-slate-200 border border-white/10">
+                    {item.status}
+                  </span>
+                  <span class="text-xs text-slate-500">Resource</span>
+                </div>
+                <h3 class="text-lg font-semibold text-white mb-2">
+                  {item.title}
+                </h3>
+                <p class="text-sm text-slate-400 leading-relaxed">
+                  {item.description}
+                </p>
               </div>
-              <h3 class="text-lg font-semibold text-white mb-2">{item.title}</h3>
-              <p class="text-sm text-slate-400 leading-relaxed">{item.description}</p>
+              {isAvailable && item.url ? (
+                <a
+                  href={item.url}
+                  target="_blank"
+                  rel="noreferrer"
+                  class="focus-ring mt-6 inline-flex items-center justify-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all bg-sky-600/90 hover:bg-sky-600 text-white"
+                >
+                  {item.action}
+                  <svg
+                    class="w-4 h-4"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    aria-hidden="true"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M12 5v14m0 0l5-5m-5 5l-5-5"
+                    />
+                  </svg>
+                </a>
+              ) : (
+                <button
+                  class="focus-ring mt-6 inline-flex items-center justify-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all bg-white/5 text-slate-400 border border-white/10 cursor-not-allowed"
+                  aria-disabled="true"
+                  type="button"
+                >
+                  {item.action}
+                  <svg
+                    class="w-4 h-4"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    aria-hidden="true"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M12 5v14m0 0l5-5m-5 5l-5-5"
+                    />
+                  </svg>
+                </button>
+              )}
             </div>
-            <button
-              class={`focus-ring mt-6 inline-flex items-center justify-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all ${
-                isAvailable
-                  ? "bg-sky-600/90 hover:bg-sky-600 text-white"
-                  : "bg-white/5 text-slate-400 border border-white/10 cursor-not-allowed"
-              }`}
-              aria-disabled={!isAvailable}
-            >
-              {item.action}
-              <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 5v14m0 0l5-5m-5 5l-5-5" />
-              </svg>
-            </button>
-          </div>
-        );
-      })}
+          );
+        })
+      }
     </div>
   </div>
 </section>
 
 <script>
-  const tabsRoot = document.querySelector("[data-download-tabs]");
-  const panels = document.querySelectorAll("[data-download-panel]");
+  const tabsRoot = document.querySelector<HTMLElement>("[data-download-tabs]");
+  const panels = document.querySelectorAll<HTMLElement>(
+    "[data-download-panel]",
+  );
 
   if (tabsRoot && panels.length) {
-    const tabs = Array.from(tabsRoot.querySelectorAll("button[data-download-tab]"));
-    const setActive = (id) => {
+    const tabs = Array.from(
+      tabsRoot.querySelectorAll<HTMLButtonElement>("button[data-download-tab]"),
+    );
+    const setActive = (id?: string) => {
+      if (!id) return;
       panels.forEach((panel) => {
         panel.classList.toggle("hidden", panel.dataset.downloadPanel !== id);
       });
