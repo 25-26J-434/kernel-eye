@@ -1,45 +1,34 @@
 ---
 const documents = [
   {
-    title: "Project Proposal",
+    title: "TAF",
     description: "Proposal document covering project background and scope.",
     status: "Available",
     action: "View Resource ",
     url: "https://drive.google.com/file/d/1W4bP6fZUgI4g0wzNWet1l_kBDSgRy1Nk/view?usp=sharing?download=true",
   },
   {
-    title: "Research Paper",
+    title: "Project Proposal 1",
+    description: "Proposal document covering project background and scope.",
+    status: "Available",
+    action: "View Resource ",
+    url: "https://drive.google.com/file/d/1R53zpnufp4wdBFS-moaW9kCB2lnq3jNY/view?usp=sharing?download=true",
+  },
+  {
+    title: "Project Proposal 2",
     description:
       "Research writing based on the KernelEye architecture and findings.",
-    status: "Coming Soon",
-    action: "Coming Soon",
-    url: "",
+    status: "Available",
+    action: "View Resource ",
+    url: "https://drive.google.com/file/d/1lFXmO2KFVdIa5iSoN6Ri3P4mR8I0yFB5/view?usp=sharing?download=true",
   },
   {
     title: "Final Report",
     description:
       "Comprehensive final report of the research and implementation.",
-    status: "Coming Soon",
-    action: "Coming Soon",
-    url: "",
-  },
-  {
-    title: "Poster",
-    description:
-      "Summary poster highlighting the research problem and solution.",
-    status: "Coming Soon",
-    action: "Coming Soon",
-    url: "",
-  },
-];
-
-const presentations = [
-  {
-    title: "PP2 Presentation",
-    description: "Progress Presentation 2 research presentation.",
     status: "Available",
-    action: "View Resource",
-    url: "",
+    action: "View Resource ",
+    url: "https://drive.google.com/file/d/1o84utyzNZ3M0QCif7oDfj_ttjyhZrnTI/view?usp=sharing?download=true",
   },
 ];
 ---
@@ -70,10 +59,7 @@ const presentations = [
       data-download-tabs
     >
       {
-        [
-          { id: "documents", label: "Documents" },
-          { id: "presentations", label: "Presentations" },
-        ].map((tab, index) => (
+        [{ id: "documents", label: "Documents" }].map((tab, index) => (
           <button
             class={`focus-ring rounded-full px-5 py-2 text-sm font-medium border transition ${
               index === 0
@@ -96,80 +82,6 @@ const presentations = [
     >
       {
         documents.map((item) => {
-          const isAvailable = item.status === "Available";
-          return (
-            <div class="glass-soft card-hover rounded-2xl p-6 border border-white/10 flex flex-col justify-between reveal">
-              <div>
-                <div class="flex items-center justify-between mb-4">
-                  <span class="text-xs px-2.5 py-1 rounded-full bg-white/10 text-slate-200 border border-white/10">
-                    {item.status}
-                  </span>
-                  <span class="text-xs text-slate-500">Resource</span>
-                </div>
-                <h3 class="text-lg font-semibold text-white mb-2">
-                  {item.title}
-                </h3>
-                <p class="text-sm text-slate-400 leading-relaxed">
-                  {item.description}
-                </p>
-              </div>
-              {isAvailable && item.url ? (
-                <a
-                  href={item.url}
-                  target="_blank"
-                  rel="noreferrer"
-                  class="focus-ring mt-6 inline-flex items-center justify-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all bg-sky-600/90 hover:bg-sky-600 text-white"
-                >
-                  {item.action}
-                  <svg
-                    class="w-4 h-4"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    aria-hidden="true"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d="M12 5v14m0 0l5-5m-5 5l-5-5"
-                    />
-                  </svg>
-                </a>
-              ) : (
-                <button
-                  class="focus-ring mt-6 inline-flex items-center justify-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all bg-white/5 text-slate-400 border border-white/10 cursor-not-allowed"
-                  aria-disabled="true"
-                  type="button"
-                >
-                  {item.action}
-                  <svg
-                    class="w-4 h-4"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    aria-hidden="true"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d="M12 5v14m0 0l5-5m-5 5l-5-5"
-                    />
-                  </svg>
-                </button>
-              )}
-            </div>
-          );
-        })
-      }
-    </div>
-    <div
-      class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 min-h-[220px] hidden"
-      data-download-panel="presentations"
-    >
-      {
-        presentations.map((item) => {
           const isAvailable = item.status === "Available";
           return (
             <div class="glass-soft card-hover rounded-2xl p-6 border border-white/10 flex flex-col justify-between reveal">
