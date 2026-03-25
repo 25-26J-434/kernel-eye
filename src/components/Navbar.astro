@@ -35,11 +35,21 @@ const navItems = [
               Download Paper
             </a>
           </li>
+          <li>
+            <button id="theme-toggle" class="focus-ring p-2 rounded-lg text-slate-300 hover:text-white transition-colors" aria-label="Toggle theme">
+              <svg id="moon-icon" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+              <svg id="sun-icon" class="w-5 h-5 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+            </button>
+          </li>
         </ul>
       </nav>
 
       <!-- Mobile menu button -->
       <div class="md:hidden flex items-center gap-2">
+        <button id="theme-toggle-mobile" class="focus-ring p-2 rounded-lg text-slate-300 hover:text-white transition-colors" aria-label="Toggle theme">
+          <svg id="moon-icon-mobile" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+          <svg id="sun-icon-mobile" class="w-5 h-5 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+        </button>
         <button id="mobile-menu-btn" class="focus-ring text-slate-300 hover:text-white focus:outline-none p-2" aria-label="Toggle menu">
           <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
             <path id="menu-icon" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
@@ -69,7 +79,43 @@ const navItems = [
 </header>
 
 <script>
-  // Mobile Menu Toggle Logic
+  // ---- Theme Toggle ----
+  const html = document.documentElement;
+  const moonIcon = document.getElementById('moon-icon');
+  const sunIcon = document.getElementById('sun-icon');
+  const moonIconMobile = document.getElementById('moon-icon-mobile');
+  const sunIconMobile = document.getElementById('sun-icon-mobile');
+
+  function applyTheme(theme: string) {
+    if (theme === 'light') {
+      html.setAttribute('data-theme', 'light');
+      moonIcon?.classList.add('hidden');
+      sunIcon?.classList.remove('hidden');
+      moonIconMobile?.classList.add('hidden');
+      sunIconMobile?.classList.remove('hidden');
+    } else {
+      html.removeAttribute('data-theme');
+      moonIcon?.classList.remove('hidden');
+      sunIcon?.classList.add('hidden');
+      moonIconMobile?.classList.remove('hidden');
+      sunIconMobile?.classList.add('hidden');
+    }
+  }
+
+  function toggleTheme() {
+    const isLight = html.getAttribute('data-theme') === 'light';
+    const next = isLight ? 'dark' : 'light';
+    localStorage.setItem('theme', next);
+    applyTheme(next);
+  }
+
+  // Apply saved theme on load
+  applyTheme(localStorage.getItem('theme') || 'dark');
+
+  document.getElementById('theme-toggle')?.addEventListener('click', toggleTheme);
+  document.getElementById('theme-toggle-mobile')?.addEventListener('click', toggleTheme);
+
+  // ---- Mobile Menu Toggle Logic ----
   const mobileMenuBtn = document.getElementById('mobile-menu-btn');
   const mobileMenu = document.getElementById('mobile-menu');
   const menuIcon = document.getElementById('menu-icon');

@@ -4,107 +4,141 @@ const milestones = [
     title: "Topic Assessment",
     date: "Milestone 1",
     status: "Completed",
-    description:
-      "Established the core problem statement and validated the initial research direction.",
+    description: "Established the core problem statement and validated the initial research direction.",
   },
   {
     title: "Proposal Presentation",
     date: "Milestone 2",
     status: "Completed",
-    description:
-      "Presented the project scope, motivation, objectives, and proposed solution strategy.",
+    description: "Presented the project scope, motivation, objectives, and proposed solution strategy.",
   },
   {
     title: "Progress Presentation 1",
     date: "Milestone 3",
     status: "Completed",
-    description:
-      "Reviewed the initial system design, architecture decisions, and module-level direction.",
+    description: "Reviewed the initial system design, architecture decisions, and module-level direction.",
   },
   {
     title: "Progress Presentation 2",
     date: "Milestone 4",
     status: "Completed",
-    description:
-      "Demonstrated implementation progress with focused validation of key components.",
+    description: "Demonstrated implementation progress with focused validation of key components.",
   },
   {
     title: "Research Paper",
     date: "Milestone 5",
     status: "Completed",
-    description:
-      "Developed the research manuscript with technical analysis and publication-ready documentation.",
+    description: "Developed the research manuscript with technical analysis and publication-ready documentation.",
   },
   {
     title: "Final Report",
     date: "Milestone 6",
     status: "Ongoing",
-    description:
-      "Compiling the complete project report, including implementation details and evaluation outcomes.",
+    description: "Compiling the complete project report, including implementation details and evaluation outcomes.",
   },
   {
     title: "Final Presentation / Viva",
     date: "Milestone 7",
     status: "Upcoming",
-    description:
-      "Preparing for the final defense with a comprehensive demonstration of research outcomes.",
+    description: "Preparing for the final defense with a comprehensive demonstration of research outcomes.",
   },
 ];
+
+function badgeClass(status: string) {
+  if (status === "Completed") return "badge-completed";
+  if (status === "Ongoing")   return "badge-ongoing";
+  return "badge-upcoming";
+}
 ---
 
-<section id="milestones" class="py-24 relative">
-  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="text-center mb-16 reveal">
-      <p class="text-sm uppercase tracking-[0.2em] text-sky-200">
-        Project Milestones
-      </p>
-      <h2 class="text-3xl md:text-4xl font-bold font-heading text-white mt-3">
+<section id="milestones" class="py-16 relative bg-zinc-900/30">
+  <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+
+    <div class="text-center mb-10 reveal">
+      <h2 class="text-3xl md:text-4xl font-bold font-heading tracking-tight text-white">
         Project Milestones
       </h2>
-      <p class="text-slate-400 mt-4 max-w-2xl mx-auto">
-        A clear timeline highlighting key research milestones and academic
-        checkpoints.
+      <p class="text-slate-300 mt-2 text-sm">
+        Key research checkpoints and academic deliverables.
       </p>
     </div>
 
     <div class="relative">
-      <div
-        class="absolute left-4 md:left-1/2 top-0 h-full w-px bg-white/10 md:-translate-x-1/2"
-      >
-      </div>
-      <div class="space-y-10">
-        {
-          milestones.map((item, index) => (
-            <div
-              class={`relative flex flex-col md:flex-row ${index % 2 === 0 ? "md:justify-start" : "md:justify-end"} items-start md:items-center gap-6`}
-            >
-              <div
-                class={`w-full md:w-[44%] ${index % 2 === 0 ? "md:pr-8" : "md:pl-8"}`}
-              >
-                <div class="glass-soft card-hover rounded-2xl p-6 border border-white/10 reveal">
-                  <div class="flex items-center justify-between mb-3">
-                    <h3 class="text-lg font-semibold text-white">
-                      {item.title}
-                    </h3>
-                    <span class="text-xs px-2 py-1 rounded-full bg-white/10 text-slate-200 border border-white/10">
-                      {item.date}
-                    </span>
-                  </div>
-                  <p class="text-sm text-slate-400 leading-relaxed mb-4">
-                    {item.description}
-                  </p>
-                  <div class="flex items-center gap-3 text-xs">
-                    <span class="px-2.5 py-1 rounded-full bg-sky-500/15 text-sky-200 border border-sky-400/30">
+      <!-- Center line (desktop) -->
+      <div class="hidden md:block absolute left-1/2 inset-y-0 w-px bg-white/10 -translate-x-1/2 z-0"></div>
+      <!-- Left line (mobile) -->
+      <div class="md:hidden absolute left-3.5 inset-y-0 w-px bg-white/10 z-0"></div>
+
+      <div class="space-y-7">
+        {milestones.map((item, index) => {
+          const isLeft = index % 2 === 0;
+          return (
+            <div class="relative reveal">
+
+              {/* ── Mobile layout: single column ── */}
+              <div class="md:hidden pl-9">
+                {/* Mobile dot */}
+                <div class="absolute left-1.5 top-4 w-4 h-4 rounded-full border-2 border-slate-500 bg-zinc-950 flex items-center justify-center z-10">
+                  <div class="w-1.5 h-1.5 rounded-full bg-sky-400"></div>
+                </div>
+                <div class="glass-soft rounded-xl border border-white/10 p-4">
+                  <div class="flex items-center gap-2 mb-2 flex-wrap">
+                    <span class="text-xs text-slate-400 font-medium">{item.date}</span>
+                    <span class="text-slate-600 text-xs">·</span>
+                    <span class={`text-xs px-2 py-0.5 rounded-full border font-medium ${badgeClass(item.status)}`}>
                       {item.status}
                     </span>
                   </div>
+                  <h3 class="text-sm font-semibold text-white tracking-tight mb-1">{item.title}</h3>
+                  <p class="text-xs text-slate-300 leading-relaxed">{item.description}</p>
                 </div>
               </div>
-              <div class="absolute left-4 md:left-1/2 w-4 h-4 rounded-full bg-sky-400 shadow-[0_0_20px_rgba(56,189,248,0.7)] md:-translate-x-1/2" />
+
+              {/* ── Desktop layout: alternating ── */}
+              <div class="hidden md:block">
+
+                {/* Center dot */}
+                <div class="absolute left-1/2 top-6 -translate-x-1/2 w-5 h-5 rounded-full border-2 border-slate-500 bg-zinc-900 flex items-center justify-center z-10">
+                  <div class="w-2.5 h-2.5 rounded-full bg-sky-400"></div>
+                </div>
+
+                {isLeft ? (
+                  /* Card on LEFT, text right-aligned */
+                  <div class="w-[46%] pr-10 ml-0 text-right">
+                    <div class="glass-soft card-hover rounded-xl border border-white/10 p-6">
+                      <div class="flex items-center justify-end gap-2 mb-3">
+                        <span class={`text-xs px-2.5 py-1 rounded-full border font-medium ${badgeClass(item.status)}`}>
+                          {item.status}
+                        </span>
+                        <span class="text-xs text-slate-400 font-medium">{item.date}</span>
+                      </div>
+                      <h3 class="text-lg font-semibold text-white tracking-tight mb-2">{item.title}</h3>
+                      <p class="text-sm text-slate-300 leading-relaxed">{item.description}</p>
+                    </div>
+                  </div>
+                ) : (
+                  /* Card on RIGHT, text left-aligned */
+                  <div class="w-[46%] pl-10 ml-auto text-left">
+                    <div class="glass-soft card-hover rounded-xl border border-white/10 p-6">
+                      <div class="flex items-center gap-2 mb-3">
+                        <span class="text-xs text-slate-400 font-medium">{item.date}</span>
+                        <span class={`text-xs px-2.5 py-1 rounded-full border font-medium ${badgeClass(item.status)}`}>
+                          {item.status}
+                        </span>
+                      </div>
+                      <h3 class="text-lg font-semibold text-white tracking-tight mb-2">{item.title}</h3>
+                      <p class="text-sm text-slate-300 leading-relaxed">{item.description}</p>
+                    </div>
+                  </div>
+                )}
+
+              </div>
+
             </div>
-          ))
-        }
+          );
+        })}
       </div>
     </div>
+
   </div>
 </section>

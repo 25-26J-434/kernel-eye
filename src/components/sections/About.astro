@@ -38,12 +38,11 @@ const scopeTabs = [
 ];
 ---
 
-<section id="scope" class="py-24 relative">
+<section id="scope" class="py-16 relative">
   <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-8 mb-12 reveal">
+    <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-8 reveal">
       <div>
-        <p class="text-sm uppercase tracking-[0.2em] text-sky-300">Project Scope</p>
-        <h2 class="text-3xl md:text-4xl font-bold font-heading text-white mt-3">
+        <h2 class="text-3xl md:text-4xl font-bold font-heading tracking-tight text-white">
           Project Scope
         </h2>
         <p class="text-slate-400 mt-4 max-w-2xl">
@@ -91,18 +90,18 @@ const scopeTabs = [
 </section>
 
 <script define:vars={{ scopeTabs }}>
-  const tabsRoot = document.querySelector<HTMLElement>("[data-scope-tabs]");
-  const titleEl = document.querySelector<HTMLElement>("[data-scope-title]");
-  const subtitleEl = document.querySelector<HTMLElement>("[data-scope-subtitle]");
-  const bodyEl = document.querySelector<HTMLElement>("[data-scope-body]");
+  const tabsRoot = document.querySelector("[data-scope-tabs]");
+  const titleEl = document.querySelector("[data-scope-title]");
+  const subtitleEl = document.querySelector("[data-scope-subtitle]");
+  const bodyEl = document.querySelector("[data-scope-body]");
 
   if (tabsRoot && titleEl && subtitleEl && bodyEl) {
     const tabs = Array.from(
-      tabsRoot.querySelectorAll<HTMLButtonElement>("button[data-tab]"),
+      tabsRoot.querySelectorAll("button[data-tab]"),
     );
     const data = scopeTabs;
 
-    const setActive = (id?: string) => {
+    const setActive = (id) => {
       if (!id) return;
       const selected = data.find((item) => item.id === id);
       if (!selected) return;
